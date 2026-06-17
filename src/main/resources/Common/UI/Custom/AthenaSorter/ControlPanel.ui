@@ -1,0 +1,195 @@
+﻿// AthenaSorter — Hauptmenü (alle Befehle per UI)
+
+Group {
+  Anchor: (Full: 0);
+  LayoutMode: Center;
+  Background: (Color: #000000(0.65));
+
+  Group #WindowBorder {
+    Anchor: (Width: 700, Height: 760);
+    Background: (Color: #4a5568);
+    Padding: (Full: 2);
+
+    Group #WindowPanel {
+      Anchor: (Full: 0);
+      Background: (Color: #1a2028);
+      Padding: (Full: 16);
+
+      Label #Title {
+        Text: "AthenaSorter";
+        Anchor: (Top: 0, Left: 0, Right: 0, Height: 26);
+        Style: (FontSize: 22, TextColor: #f7fafc, RenderBold: true, HorizontalAlignment: Center);
+      }
+      Label #Subtitle {
+        Text: "Hauptmenü — alles per Klick";
+        Anchor: (Top: 28, Left: 0, Right: 0, Height: 18);
+        Style: (FontSize: 12, TextColor: #a0aec0, HorizontalAlignment: Center);
+      }
+
+      Group #Tabs {
+        Anchor: (Top: 52, Height: 34, Left: 0, Right: 0);
+
+        Button #TabHelpBtn {
+          Anchor: (Width: 90, Height: 30, Top: 2, Left: 143);
+          Style: (Default: (Background: (Color: #2d3748)), Hovered: (Background: (Color: #4a5568)));
+          Label { Text: "Hilfe"; Anchor: (Full: 0); Style: (TextColor: #ffffff, FontSize: 12, HorizontalAlignment: Center, VerticalAlignment: Center); }
+        }
+        Button #TabStatusBtn {
+          Anchor: (Width: 90, Height: 30, Top: 2, Left: 239);
+          Style: (Default: (Background: (Color: #2d3748)), Hovered: (Background: (Color: #4a5568)));
+          Label { Text: "Status"; Anchor: (Full: 0); Style: (TextColor: #ffffff, FontSize: 12, HorizontalAlignment: Center, VerticalAlignment: Center); }
+        }
+        Button #TabScanBtn {
+          Anchor: (Width: 90, Height: 30, Top: 2, Left: 335);
+          Style: (Default: (Background: (Color: #2d3748)), Hovered: (Background: (Color: #4a5568)));
+          Label { Text: "Scan"; Anchor: (Full: 0); Style: (TextColor: #ffffff, FontSize: 12, HorizontalAlignment: Center, VerticalAlignment: Center); }
+        }
+        Button #TabSettingsBtn {
+          Anchor: (Width: 90, Height: 30, Top: 2, Left: 401);
+          Style: (Default: (Background: (Color: #2d3748)), Hovered: (Background: (Color: #4a5568)));
+          Label { Text: "Settings"; Anchor: (Full: 0); Style: (TextColor: #ffffff, FontSize: 12, HorizontalAlignment: Center, VerticalAlignment: Center); }
+        }
+      }
+
+      Group #HelpView {
+        Anchor: (Top: 95, Bottom: 50, Left: 0, Right: 0);
+        Background: (Color: #2d3748);
+        Padding: (Full: 14);
+        Label #HelpTitle {
+          Text: "AthenaSorter Anleitung";
+          Anchor: (Top: 0, Left: 0, Right: 0, Height: 22);
+          Style: (FontSize: 15, TextColor: #63b3ed, RenderBold: true, HorizontalAlignment: Center);
+        }
+        Label #HelpLine1 { Text: "Ducken + Rechtsklick auf Kiste"; Anchor: (Top: 28, Left: 0, Right: 0, Height: 18); Style: (FontSize: 13, TextColor: #e2e8f0, HorizontalAlignment: Center); }
+        Label #HelpLine2 { Text: "Eingangskiste: Items reinlegen"; Anchor: (Top: 50, Left: 0, Right: 0, Height: 18); Style: (FontSize: 13, TextColor: #e2e8f0, HorizontalAlignment: Center); }
+        Label #HelpLine3 { Text: "Speicherkiste: Item in Hand + Slot"; Anchor: (Top: 72, Left: 0, Right: 0, Height: 18); Style: (FontSize: 13, TextColor: #e2e8f0, HorizontalAlignment: Center); }
+        Label #HelpLine4 { Text: "Hauptmenü: /athenasorter oder /lager"; Anchor: (Top: 94, Left: 0, Right: 0, Height: 18); Style: (FontSize: 13, TextColor: #e2e8f0, HorizontalAlignment: Center); }
+        Label #HelpLine5 { Text: "Items sortieren sich automatisch"; Anchor: (Top: 128, Left: 0, Right: 0, Height: 18); Style: (FontSize: 13, TextColor: #68d391, HorizontalAlignment: Center); }
+      }
+
+      Group #StatusView {
+        Anchor: (Top: 95, Bottom: 50, Left: 0, Right: 0);
+        Visible: false;
+        Background: (Color: #2d3748);
+        Padding: (Full: 14);
+        Label #StatusWorld { Text: "Welt: —"; Anchor: (Top: 0, Left: 0, Right: 0, Height: 22); Style: (FontSize: 14, TextColor: #63b3ed, RenderBold: true); }
+        Label #StatusInput { Text: "Eingangskiste: —"; Anchor: (Top: 28, Left: 0, Right: 0, Height: 20); Style: (FontSize: 13, TextColor: #e2e8f0); }
+        Label #StatusStorage { Text: "Speicherkisten: —"; Anchor: (Top: 52, Left: 0, Right: 0, Height: 20); Style: (FontSize: 13, TextColor: #e2e8f0); }
+        Label #StatusIndexed { Text: "Indexierte Kisten: —"; Anchor: (Top: 76, Left: 0, Right: 0, Height: 20); Style: (FontSize: 13, TextColor: #e2e8f0); }
+        Label #StatusRadius { Text: "Suchradius: —"; Anchor: (Top: 100, Left: 0, Right: 0, Height: 20); Style: (FontSize: 13, TextColor: #e2e8f0); }
+        Label #StatusInterval { Text: "Intervall: —"; Anchor: (Top: 124, Left: 0, Right: 0, Height: 20); Style: (FontSize: 13, TextColor: #e2e8f0); }
+        Button #RefreshStatusBtn {
+          Anchor: (Top: 160, Width: 160, Height: 32, Left: 154);
+          Style: (Default: (Background: (Color: #2b6cb0)), Hovered: (Background: (Color: #3182ce)));
+          Label { Text: "Status aktualisieren"; Anchor: (Full: 0); Style: (TextColor: #ffffff, FontSize: 12, HorizontalAlignment: Center, VerticalAlignment: Center); }
+        }
+        Button #ClearInputBtn {
+          Anchor: (Top: 200, Width: 200, Height: 32, Left: 134);
+          Style: (Default: (Background: (Color: #742a2a)), Hovered: (Background: (Color: #9b2c2c)));
+          Label { Text: "Eingangskiste entfernen"; Anchor: (Full: 0); Style: (TextColor: #ffffff, FontSize: 12, HorizontalAlignment: Center, VerticalAlignment: Center); }
+        }
+      }
+
+      Group #ScanView {
+        Anchor: (Top: 95, Bottom: 50, Left: 0, Right: 0);
+        Visible: false;
+        Label #ScanHint {
+          Text: "Scannt Kisten um dich herum und registriert sie.";
+          Anchor: (Top: 0, Left: 0, Right: 0, Height: 36);
+          Style: (FontSize: 13, TextColor: #cbd5e0, HorizontalAlignment: Center);
+        }
+        Label #ScanRadiusLabel {
+          Text: "Scan-Radius: 24 Blöcke";
+          Anchor: (Top: 50, Left: 0, Right: 0, Height: 22);
+          Style: (FontSize: 15, TextColor: #f7fafc, HorizontalAlignment: Center);
+        }
+        Group #ScanRadiusControls {
+          Anchor: (Top: 78, Height: 36, Left: 0, Right: 0);
+          Button #ScanRadiusDec {
+            Anchor: (Width: 40, Height: 32, Top: 2, Left: 168);
+            Style: (Default: (Background: (Color: #2d3748)), Hovered: (Background: (Color: #4a5568)));
+            Label { Text: "-"; Anchor: (Full: 0); Style: (FontSize: 18, TextColor: #ffffff, HorizontalAlignment: Center, VerticalAlignment: Center); }
+          }
+          Button #ScanRadiusInc {
+            Anchor: (Width: 40, Height: 32, Top: 2, Left: 292);
+            Style: (Default: (Background: (Color: #2d3748)), Hovered: (Background: (Color: #4a5568)));
+            Label { Text: "+"; Anchor: (Full: 0); Style: (FontSize: 18, TextColor: #ffffff, HorizontalAlignment: Center, VerticalAlignment: Center); }
+          }
+        }
+        Button #RunScanBtn {
+          Anchor: (Top: 130, Width: 220, Height: 40, Left: 124);
+          Style: (Default: (Background: (Color: #276749)), Hovered: (Background: (Color: #2f855a)));
+          Label { Text: "Kisten jetzt scannen"; Anchor: (Full: 0); Style: (TextColor: #ffffff, FontSize: 15, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+        }
+        Label #ScanResult {
+          Text: "";
+          Anchor: (Top: 190, Left: 10, Right: 10, Height: 60);
+          Style: (FontSize: 13, TextColor: #68d391, HorizontalAlignment: Center);
+        }
+      }
+
+      Group #SettingsView {
+        Anchor: (Top: 95, Bottom: 50, Left: 0, Right: 0);
+        Visible: false;
+        Label #SettingsHint {
+          Text: "Globale Sortier-Einstellungen";
+          Anchor: (Top: 0, Left: 0, Right: 0, Height: 24);
+          Style: (FontSize: 14, TextColor: #63b3ed, HorizontalAlignment: Center, RenderBold: true);
+        }
+        Label #SortRadiusLabel {
+          Text: "Sortier-Radius: 32";
+          Anchor: (Top: 40, Left: 0, Right: 0, Height: 22);
+          Style: (FontSize: 14, TextColor: #e2e8f0, HorizontalAlignment: Center);
+        }
+        Group #SortRadiusControls {
+          Anchor: (Top: 68, Height: 36, Left: 0, Right: 0);
+          Button #SortRadiusDec {
+            Anchor: (Width: 40, Height: 32, Top: 2, Left: 168);
+            Style: (Default: (Background: (Color: #2d3748)), Hovered: (Background: (Color: #4a5568)));
+            Label { Text: "-"; Anchor: (Full: 0); Style: (FontSize: 18, TextColor: #ffffff, HorizontalAlignment: Center, VerticalAlignment: Center); }
+          }
+          Button #SortRadiusInc {
+            Anchor: (Width: 40, Height: 32, Top: 2, Left: 292);
+            Style: (Default: (Background: (Color: #2d3748)), Hovered: (Background: (Color: #4a5568)));
+            Label { Text: "+"; Anchor: (Full: 0); Style: (FontSize: 18, TextColor: #ffffff, HorizontalAlignment: Center, VerticalAlignment: Center); }
+          }
+        }
+        Label #SortIntervalLabel {
+          Text: "Sortier-Intervall: 1.0s";
+          Anchor: (Top: 110, Left: 0, Right: 0, Height: 22);
+          Style: (FontSize: 14, TextColor: #e2e8f0, HorizontalAlignment: Center);
+        }
+        Group #SortIntervalControls {
+          Anchor: (Top: 138, Height: 36, Left: 0, Right: 0);
+          Button #SortIntervalDec {
+            Anchor: (Width: 40, Height: 32, Top: 2, Left: 168);
+            Style: (Default: (Background: (Color: #2d3748)), Hovered: (Background: (Color: #4a5568)));
+            Label { Text: "-"; Anchor: (Full: 0); Style: (FontSize: 18, TextColor: #ffffff, HorizontalAlignment: Center, VerticalAlignment: Center); }
+          }
+          Button #SortIntervalInc {
+            Anchor: (Width: 40, Height: 32, Top: 2, Left: 292);
+            Style: (Default: (Background: (Color: #2d3748)), Hovered: (Background: (Color: #4a5568)));
+            Label { Text: "+"; Anchor: (Full: 0); Style: (FontSize: 18, TextColor: #ffffff, HorizontalAlignment: Center, VerticalAlignment: Center); }
+          }
+        }
+        Label #SettingsNote {
+          Text: "Kisten einrichten: Ducken + Rechtsklick auf Kiste";
+          Anchor: (Top: 200, Left: 0, Right: 0, Height: 40);
+          Style: (FontSize: 12, TextColor: #a0aec0, HorizontalAlignment: Center);
+        }
+      }
+
+      Label #FeedbackLabel {
+        Text: "";
+        Anchor: (Bottom: 48, Left: 8, Right: 8, Height: 22);
+        Style: (FontSize: 12, TextColor: #f6ad55, HorizontalAlignment: Center);
+      }
+
+      Button #CloseButton {
+        Anchor: (Bottom: 10, Width: 140, Height: 34, Left: 164);
+        Style: (Default: (Background: (Color: #4a5568)), Hovered: (Background: (Color: #718096)));
+        Label { Text: "Schliessen"; Anchor: (Full: 0); Style: (TextColor: #ffffff, FontSize: 14, HorizontalAlignment: Center, VerticalAlignment: Center); }
+      }
+    }
+  }
+}
