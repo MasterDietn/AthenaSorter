@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import com.trist.athenasorter.util.ContainerBlockUtil;
 import org.joml.Vector3i;
 
 /** Spatial index of container block positions per world. */
@@ -81,10 +82,7 @@ public class ContainerRegistry {
                 }
                 for (long encoded : positions) {
                     Vector3i pos = decodePosition(encoded);
-                    long distSq =
-                            (long) pos.x - x * (pos.x - x)
-                                    + (long) pos.y - y * (pos.y - y)
-                                    + (long) pos.z - z * (pos.z - z);
+                    long distSq = ContainerBlockUtil.distanceSquared(pos.x, pos.y, pos.z, x, y, z);
                     if (distSq <= radiusSq) {
                         result.add(pos);
                     }

@@ -2,13 +2,11 @@ package com.trist.athenasorter.ui;
 
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
-import com.hypixel.hytale.server.core.entity.entities.Player;
-import com.hypixel.hytale.server.core.entity.entities.player.pages.CustomUIPage;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
-import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.trist.athenasorter.AthenaSorterMod;
 import com.trist.athenasorter.manager.StorageManager;
+import org.joml.Vector3i;
 
 public final class UiOpener {
     private UiOpener() {}
@@ -18,7 +16,7 @@ public final class UiOpener {
     }
 
     public static void openControlPanelTab(
-            Ref<EntityStore> entityRef, Store<EntityStore> store, PlayerRef playerRef, int tab) {
+            Ref<EntityStore> entityRef, Store<EntityStore> store, PlayerRef playerRef, int legacyTab) {
         AthenaSorterMod mod = AthenaSorterMod.getInstance();
         if (mod == null) {
             return;
@@ -27,14 +25,34 @@ public final class UiOpener {
         if (manager == null) {
             return;
         }
-        openCustomPage(entityRef, store, new ControlPanelPage(playerRef, manager, tab));
+        int tab = legacyTab + ChestConfigPage.TAB_HELP;
+        openCustomPage(entityRef, store, new ChestConfigPage(playerRef, manager, tab));
     }
 
-    public static void openCustomPage(Ref<EntityStore> entityRef, Store<EntityStore> store, CustomUIPage page) {
+    public static void openChestConfig(
+            Ref<EntityStore> entityRef,
+            Store<EntityStore> store,
+            PlayerRef playerRef,
+            String blockId,
+            StorageManager manager,
+            Vector3i targetBlock,
+            String worldName,
+            String heldItemId) {
+        openCustomPage(
+                entityRef,
+                store,
+                new ChestConfigPage(
+                        playerRef, blockId, manager, targetBlock, worldName, heldItemId));
+    }
+
+    public static void openCustomPage(
+            Ref<EntityStore> entityRef,
+            Store<EntityStore> store,
+            com.hypixel.hytale.server.core.entity.entities.player.pages.CustomUIPage page) {
         if (entityRef == null || !entityRef.isValid() || store == null || page == null) {
             return;
         }
-        World world = store.getExternalData().getWorld();
+        com.hypixel.hytale.server.core.universe.world.World world = store.getExternalData().getWorld();
         if (world == null) {
             openCustomPageNow(entityRef, store, page);
             return;
@@ -43,11 +61,14 @@ public final class UiOpener {
     }
 
     private static void openCustomPageNow(
-            Ref<EntityStore> entityRef, Store<EntityStore> store, CustomUIPage page) {
+            Ref<EntityStore> entityRef,
+            Store<EntityStore> store,
+            com.hypixel.hytale.server.core.entity.entities.player.pages.CustomUIPage page) {
         if (entityRef == null || !entityRef.isValid()) {
             return;
         }
-        Player player = store.getComponent(entityRef, Player.getComponentType());
+        com.hypixel.hytale.server.core.entity.entities.Player player =
+                store.getComponent(entityRef, com.hypixel.hytale.server.core.entity.entities.Player.getComponentType());
         if (player == null) {
             return;
         }

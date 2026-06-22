@@ -10,6 +10,7 @@ import com.hypixel.hytale.server.core.universe.Universe;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.trist.athenasorter.manager.StorageManager;
+import com.trist.athenasorter.util.ChestRowUtil;
 import com.trist.athenasorter.util.ContainerAccess;
 import com.trist.athenasorter.util.ContainerBlockUtil;
 import com.trist.athenasorter.util.ItemTransferUtil;
@@ -98,8 +99,16 @@ public class SortingSystem extends TickingSystem<EntityStore> {
                     continue;
                 }
                 String itemId = stack.getItemId();
-                Vector3i target = findBestStorage(world, worldName, inputX, inputY, inputZ, itemId, radius, worldData);
+                Vector3i target =
+                        findBestStorage(world, worldName, inputX, inputY, inputZ, itemId, radius, worldData);
                 if (target == null) {
+                    continue;
+                }
+
+                StorageManager.StorageChestData chestData =
+                        worldData.storageChests.get(
+                                manager.positionKey(worldName, target.x, target.y, target.z));
+                if (chestData == null) {
                     continue;
                 }
 
@@ -111,8 +120,28 @@ public class SortingSystem extends TickingSystem<EntityStore> {
 
                 List<SimpleItemContainer> destSlots = ItemTransferUtil.collectSimpleContainers(destContainer);
                 for (SimpleItemContainer dest : destSlots) {
-                    if (ItemTransferUtil.hasSpaceFor(dest, stack)) {
+                    boolean moved = false;
+                    if (chestData.rowSortMode) {
+                        int slotsPerRow = ChestRowUtil.slotsPerRow(dest.getCapacity());
+                        for (int row : chestData.rowsForItem(itemId)) {
+                            ItemStack remaining = inputSlotContainer.getItemStack(slot);
+                            if (remaining == null || remaining.isEmpty()) {
+                                break;
+                            }
+                            if (!ItemTransferUtil.hasSpaceInRow(dest, remaining, row, slotsPerRow)) {
+                                continue;
+                            }
+                            if (ItemTransferUtil.moveStackToRow(
+                                    inputSlotContainer, slot, dest, row, slotsPerRow)
+                                    > 0) {
+                                moved = true;
+                            }
+                        }
+                    } else if (ItemTransferUtil.hasSpaceFor(dest, stack)) {
                         ItemTransferUtil.moveStack(inputSlotContainer, slot, dest);
+                        moved = true;
+                    }
+                    if (moved) {
                         break;
                     }
                 }
@@ -134,7 +163,11 @@ public class SortingSystem extends TickingSystem<EntityStore> {
 
         for (Map.Entry<String, StorageManager.StorageChestData> entry : worldData.storageChests.entrySet()) {
             StorageManager.StorageChestData chest = entry.getValue();
-            if (!chest.acceptedItems.contains(itemId)) {
+            if (chest.rowSortMode) {
+                if (chest.findRowForItem(itemId) < 0) {
+                    continue;
+                }
+            } else if (!chest.acceptedItems.contains(itemId)) {
                 continue;
             }
 
@@ -151,9 +184,7 @@ public class SortingSystem extends TickingSystem<EntityStore> {
             }
 
             long distSq =
-                    (long) x - inputX * (x - inputX)
-                            + (long) y - inputY * (y - inputY)
-                            + (long) z - inputZ * (z - inputZ);
+                    ContainerBlockUtil.distanceSquared(x, y, z, inputX, inputY, inputZ);
             if (distSq > (long) radius * radius) {
                 continue;
             }
@@ -175,4 +206,5 @@ public class SortingSystem extends TickingSystem<EntityStore> {
         }
         return best;
     }
+
 }

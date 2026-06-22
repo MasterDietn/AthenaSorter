@@ -1,7 +1,7 @@
 {
     "Group": "trist",
     "Name": "AthenaSorter",
-    "Version": "1.4.0",
+    "Version": "1.0.0",
     "ServerVersion": "*",
     "Description": "AthenaSorter — globale Eingangskiste, Items werden automatisch einsortiert.",
     "Authors": [

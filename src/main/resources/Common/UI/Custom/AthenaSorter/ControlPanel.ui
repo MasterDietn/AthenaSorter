@@ -94,7 +94,7 @@ Group {
         Anchor: (Top: 95, Bottom: 50, Left: 0, Right: 0);
         Visible: false;
         Label #ScanHint {
-          Text: "Scannt Kisten um dich herum und registriert sie.";
+          Text: "Scannt nur Kisten auf deinen Plots (SimpleClaims). Fremde Kisten werden ignoriert.";
           Anchor: (Top: 0, Left: 0, Right: 0, Height: 36);
           Style: (FontSize: 13, TextColor: #cbd5e0, HorizontalAlignment: Center);
         }

@@ -1,0 +1,88 @@
+// AthenaSorter — AthenaQuest visual style (textures in Textures/AthenaSorter/)
+
+@WindowBg = #141c18ff;
+@PanelBg = #121a18ff;
+@AccentGold = #d4a345;
+@AccentGreen = #8ee4b8;
+@AccentGreenBright = #6ee7b7;
+
+@TitleStyle = (FontSize: 17, TextColor: #eef6f0, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, RenderUppercase: true, LetterSpacing: 2);
+@SubtitleStyle = (FontSize: 12, TextColor: #c8e0d4, HorizontalAlignment: Center, VerticalAlignment: Center);
+@NavTitleStyle = (FontSize: 14, TextColor: #eef6f0, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center, RenderUppercase: true, LetterSpacing: 1);
+@SectionStyle = (FontSize: 11, TextColor: #d4a345, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Start);
+@BadgeStyle = (FontSize: 15, TextColor: #8ee4b8, RenderBold: true, HorizontalAlignment: Center);
+@HintStyle = (FontSize: 13, TextColor: #6ee7b7, RenderBold: true, HorizontalAlignment: Center);
+@BodyStyle = (FontSize: 14, TextColor: #ecf8f0, HorizontalAlignment: Center);
+@MutedStyle = (FontSize: 13, TextColor: #5a9880, HorizontalAlignment: Center);
+
+@StorylineStyle = ButtonStyle(
+  Default: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #7a5a18f0)),
+  Hovered: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #a87828f0)),
+  Pressed: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #5a4010f0))
+);
+
+@TabStyle = ButtonStyle(
+  Default: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #141c18cc)),
+  Hovered: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #1e2e28e8)),
+  Pressed: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #101810f0))
+);
+
+@TabActiveStyle = ButtonStyle(
+  Default: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #2d6a48e8)),
+  Hovered: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #35885ae8)),
+  Pressed: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #245a3ae8))
+);
+
+@PrimaryStyle = ButtonStyle(
+  Default: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #1e5238f0)),
+  Hovered: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #2a6848f0)),
+  Pressed: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #183828f0))
+);
+
+@SuccessStyle = ButtonStyle(
+  Default: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #2d6a48f0)),
+  Hovered: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #35885af0)),
+  Pressed: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #245a3af0))
+);
+
+@DangerStyle = ButtonStyle(
+  Default: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #5a2020e0)),
+  Hovered: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #7a3030e0)),
+  Pressed: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #401010e0))
+);
+
+@PurpleStyle = ButtonStyle(
+  Default: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #3a2860e0)),
+  Hovered: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #4a3480e0)),
+  Pressed: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #281848e0))
+);
+
+@GhostStyle = ButtonStyle(
+  Default: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #1a2824fa)),
+  Hovered: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #2a6048fa)),
+  Pressed: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #141e18fa))
+);
+
+@WarnStyle = ButtonStyle(
+  Default: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #7a5a18f0)),
+  Hovered: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #a87828f0)),
+  Pressed: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #5a4010f0))
+);
+
+@RowBtnStyle = ButtonStyle(
+  Default: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #1e2e28f2)),
+  Hovered: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #2a4038f2)),
+  Pressed: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #141c18f2))
+);
+
+@SlotStyle = ButtonStyle(
+  Default: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #1a2420fa)),
+  Hovered: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #2a4038fa)),
+  Pressed: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #0e1412fa))
+);
+
+@SmallBtnStyle = ButtonStyle(
+  Default: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #121a16f2)),
+  Hovered: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #1a2820f0)),
+  Pressed: (Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #0e1412f0))
+);

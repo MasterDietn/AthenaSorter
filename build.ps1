@@ -4,7 +4,7 @@ $srcRoot = Join-Path $projectRoot "src\main\java"
 $resources = Join-Path $projectRoot "src\main\resources"
 $classes = Join-Path $projectRoot "build\classes"
 $staging = Join-Path $projectRoot "build\staging"
-$outJar = Join-Path $projectRoot "AthenaSorter.jar"
+$outJar = Join-Path $projectRoot "AthenaSorter-1.0.0.jar"
 
 $serverJarCandidates = @(
     "c:\Users\trist\AppData\Roaming\Hytale\install\release\package\game\latest\Server\HytaleServer.jar",

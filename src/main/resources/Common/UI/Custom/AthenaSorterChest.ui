@@ -1,0 +1,416 @@
+﻿// AthenaSorter — AthenaQuest-style layout (LAGER badge, sidebar nav, rounded panels)
+
+$T = "AthenaSorterTheme.ui";
+
+Group {
+  Anchor: (Full: 0);
+  LayoutMode: Center;
+  Background: (Color: #000000(0.55));
+
+  Group #WindowBorder {
+    Anchor: (Width: 1040, Height: 700);
+    Background: (TexturePath: "Textures/AthenaSorter/RoundedWindow.png", Border: 32);
+    Padding: (Full: 16);
+
+    Group #WindowPanel {
+      Anchor: (Full: 0);
+      LayoutMode: Full;
+
+      Group #BgLayer {
+        LayoutMode: Full;
+        HitTestVisible: false;
+        Group { LayoutMode: Full; Background: (TexturePath: "Textures/AthenaSorter/Athena_1.png"); }
+        Group { LayoutMode: Full; Background: (Color: #0a1018(0.58)); }
+        Group { LayoutMode: Full; Background: (Color: #141c18(0.42)); }
+      }
+
+      Group #ContentLayer {
+        Anchor: (Full: 0);
+
+        Group #HeaderRow {
+          Anchor: (Top: 4, Left: 4, Right: 4, Height: 52);
+          Background: (TexturePath: "Textures/AthenaSorter/RoundedCard.png", Border: 16);
+          HitTestVisible: false;
+        }
+
+        Group #LagernBadge {
+          Anchor: (Top: 12, Left: 20, Width: 112, Height: 36);
+          Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #7a5a18f0);
+          HitTestVisible: false;
+          Label {
+            Text: "LAGER";
+            Anchor: (Full: 0);
+            Style: (FontSize: 12, TextColor: #fff0b8, RenderBold: true, RenderUppercase: true, LetterSpacing: 1, HorizontalAlignment: Center, VerticalAlignment: Center);
+          }
+        }
+
+        Label #Title {
+          Text: "ATHENA-SORTER";
+          Anchor: (Top: 14, Left: 0, Right: 0, Height: 32);
+          Style: $T.@TitleStyle;
+        }
+        Label #Subtitle {
+          Text: "Automatisches Lagern";
+          Anchor: (Top: 46, Left: 0, Right: 0, Height: 16);
+          Visible: false;
+          Style: $T.@SubtitleStyle;
+        }
+
+        Button #CloseButton {
+          Anchor: (Top: 12, Right: 20, Width: 40, Height: 36);
+          Style: $T.@GhostStyle;
+          Label { Text: "X"; Anchor: (Full: 0); HitTestVisible: false; Style: (TextColor: #ecf8f0, FontSize: 14, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+        }
+
+        Group #NavSidebar {
+          Anchor: (Top: 64, Left: 8, Width: 210, Bottom: 48);
+          Background: (TexturePath: "Textures/AthenaSorter/RoundedPanel.png", Border: 24);
+          Padding: (Full: 10);
+          HitTestVisible: false;
+        }
+
+        Label #NavTitle {
+          Text: "MENÜ";
+          Anchor: (Top: 72, Left: 18, Width: 190, Height: 28);
+          Style: $T.@NavTitleStyle;
+        }
+
+        Group #Tabs {
+          Anchor: (Top: 104, Left: 14, Width: 196, Height: 220);
+
+          Group #TabChestActive { Anchor: (Width: 3, Height: 30, Top: 5, Left: 2); Background: (Color: #d4a345); Visible: false; HitTestVisible: false; }
+          Group #TabHelpActive { Anchor: (Width: 3, Height: 30, Top: 43, Left: 2); Background: (Color: #d4a345); Visible: false; HitTestVisible: false; }
+          Group #TabStatusActive { Anchor: (Width: 3, Height: 30, Top: 81, Left: 2); Background: (Color: #d4a345); Visible: false; HitTestVisible: false; }
+          Group #TabScanActive { Anchor: (Width: 3, Height: 30, Top: 119, Left: 2); Background: (Color: #d4a345); Visible: false; HitTestVisible: false; }
+          Group #TabSettingsActive { Anchor: (Width: 3, Height: 30, Top: 157, Left: 2); Background: (Color: #d4a345); Visible: false; HitTestVisible: false; }
+
+          Button #TabChestBtn {
+            Anchor: (Width: 184, Height: 34, Top: 2, Left: 8);
+            Style: $T.@TabStyle;
+            Label { Text: "Kiste"; Anchor: (Left: 12, Top: 0, Right: 0, Height: 34); HitTestVisible: false; Style: (TextColor: #c8e0d4, FontSize: 13, HorizontalAlignment: Start, VerticalAlignment: Center); }
+          }
+          Button #TabHelpBtn {
+            Anchor: (Width: 184, Height: 34, Top: 40, Left: 8);
+            Style: $T.@TabStyle;
+            Label { Text: "Hilfe"; Anchor: (Left: 12, Top: 0, Right: 0, Height: 34); HitTestVisible: false; Style: (TextColor: #c8e0d4, FontSize: 13, HorizontalAlignment: Start, VerticalAlignment: Center); }
+          }
+          Button #TabStatusBtn {
+            Anchor: (Width: 184, Height: 34, Top: 78, Left: 8);
+            Style: $T.@TabStyle;
+            Label { Text: "Status"; Anchor: (Left: 12, Top: 0, Right: 0, Height: 34); HitTestVisible: false; Style: (TextColor: #c8e0d4, FontSize: 13, HorizontalAlignment: Start, VerticalAlignment: Center); }
+          }
+          Button #TabScanBtn {
+            Anchor: (Width: 184, Height: 34, Top: 116, Left: 8);
+            Style: $T.@TabStyle;
+            Label { Text: "Scan"; Anchor: (Left: 12, Top: 0, Right: 0, Height: 34); HitTestVisible: false; Style: (TextColor: #c8e0d4, FontSize: 13, HorizontalAlignment: Start, VerticalAlignment: Center); }
+          }
+          Button #TabSettingsBtn {
+            Anchor: (Width: 184, Height: 34, Top: 154, Left: 8);
+            Style: $T.@TabStyle;
+            Label { Text: "Einstellungen"; Anchor: (Left: 12, Top: 0, Right: 0, Height: 34); HitTestVisible: false; Style: (TextColor: #c8e0d4, FontSize: 12, HorizontalAlignment: Start, VerticalAlignment: Center); }
+          }
+        }
+
+        Group #ChestView {
+          Anchor: (Top: 64, Bottom: 48, Left: 226, Right: 8);
+          Background: (TexturePath: "Textures/AthenaSorter/RoundedPanel.png", Border: 24, Color: #141c18e0);
+          Padding: (Full: 16);
+
+          Group { LayoutMode: Full; Background: (Color: #141c18(0.52)); HitTestVisible: false; }
+
+          Label #RoleBadge {
+            Text: "Status: Nicht eingerichtet";
+            Anchor: (Top: 4, Left: 0, Right: 0, Height: 28);
+            Style: $T.@BadgeStyle;
+          }
+          Group #RoleButtons {
+            Anchor: (Top: 36, Height: 44, Left: 0, Right: 0);
+            LayoutMode: Center;
+            Group {
+              Anchor: (Width: 536, Height: 44);
+              Button #SetInputBtn {
+                Anchor: (Width: 168, Height: 40, Top: 2, Left: 0);
+                Style: $T.@PrimaryStyle;
+              Label { Text: "Eingangskiste"; Anchor: (Full: 0); HitTestVisible: false; Style: (TextColor: #ffffff, FontSize: 13, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+            }
+            Button #SetStorageBtn {
+              Anchor: (Width: 168, Height: 40, Top: 2, Left: 188);
+              Style: $T.@SuccessStyle;
+              Label { Text: "Speicherkiste"; Anchor: (Full: 0); HitTestVisible: false; Style: (TextColor: #ffffff, FontSize: 13, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+            }
+            Button #ClearRoleBtn {
+              Anchor: (Width: 140, Height: 40, Top: 2, Left: 396);
+              Style: $T.@DangerStyle;
+              Label { Text: "Entfernen"; Anchor: (Full: 0); HitTestVisible: false; Style: (TextColor: #ffcccc, FontSize: 13, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+            }
+            }
+          }
+          Group #FilterHintBar {
+            Anchor: (Top: 84, Left: 0, Right: 0, Height: 26);
+            Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #141c18aa);
+            HitTestVisible: false;
+          }
+          Label #FilterHint {
+            Text: "Speicherkiste: Item in Hand + Slot klicken";
+            Anchor: (Top: 86, Left: 0, Right: 0, Height: 22);
+            Style: $T.@HintStyle;
+          }
+          Group #ToggleRowModeRow {
+            Anchor: (Top: 112, Height: 36, Left: 0, Right: 0);
+            LayoutMode: Center;
+            Button #ToggleRowModeBtn {
+              Anchor: (Width: 240, Height: 36);
+              Style: $T.@WarnStyle;
+              Label #ToggleRowModeLabel { Text: "Reihen-Modus"; Anchor: (Full: 0); HitTestVisible: false; Style: (TextColor: #fff0b8, FontSize: 13, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+            }
+          }
+          Group #RowGrid {
+            Anchor: (Top: 152, Left: 0, Right: 0, Height: 210);
+            Visible: false;
+            Group #RowHintBar {
+              Anchor: (Top: 0, Left: 0, Right: 0, Height: 24);
+              Background: (TexturePath: "Textures/AthenaSorter/RoundedChip.png", Border: 12, Color: #141c18aa);
+              HitTestVisible: false;
+            }
+            Label #RowHint {
+              Text: "Reihe 1 = oben. Item in Hand + Reihe klicken.";
+              Anchor: (Top: 2, Left: 0, Right: 0, Height: 20);
+              HitTestVisible: false;
+              Style: (FontSize: 13, TextColor: #c8e0d4, HorizontalAlignment: Center);
+            }
+            Group #RowButtonArea {
+              Anchor: (Top: 28, Left: 0, Right: 0, Height: 182);
+              LayoutMode: Center;
+              Group #RowContainer {
+                Anchor: (Width: 536, Height: 182);
+                Button #RowBtn0 { Anchor: (Width: 260, Height: 38, Top: 0, Left: 0); Padding: (Full: 4); Style: $T.@RowBtnStyle; ItemIcon #RowIcon0 { Anchor: (Width: 30, Height: 30, Left: 6, Top: 4); HitTestVisible: false; } Label { Text: "Reihe 1"; Anchor: (Left: 44, Top: 0, Right: 8, Height: 38); HitTestVisible: false; Style: (TextColor: #ecf8f0, FontSize: 13, HorizontalAlignment: Start, VerticalAlignment: Center); } }
+                Button #RowBtn1 { Anchor: (Width: 260, Height: 38, Top: 42, Left: 0); Padding: (Full: 4); Style: $T.@RowBtnStyle; ItemIcon #RowIcon1 { Anchor: (Width: 30, Height: 30, Left: 6, Top: 4); HitTestVisible: false; } Label { Text: "Reihe 2"; Anchor: (Left: 44, Top: 0, Right: 8, Height: 38); HitTestVisible: false; Style: (TextColor: #ecf8f0, FontSize: 13, HorizontalAlignment: Start, VerticalAlignment: Center); } }
+                Button #RowBtn2 { Anchor: (Width: 260, Height: 38, Top: 84, Left: 0); Padding: (Full: 4); Style: $T.@RowBtnStyle; ItemIcon #RowIcon2 { Anchor: (Width: 30, Height: 30, Left: 6, Top: 4); HitTestVisible: false; } Label { Text: "Reihe 3"; Anchor: (Left: 44, Top: 0, Right: 8, Height: 38); HitTestVisible: false; Style: (TextColor: #ecf8f0, FontSize: 13, HorizontalAlignment: Start, VerticalAlignment: Center); } }
+                Button #RowBtn3 { Anchor: (Width: 260, Height: 38, Top: 126, Left: 0); Padding: (Full: 4); Style: $T.@RowBtnStyle; ItemIcon #RowIcon3 { Anchor: (Width: 30, Height: 30, Left: 6, Top: 4); HitTestVisible: false; } Label { Text: "Reihe 4"; Anchor: (Left: 44, Top: 0, Right: 8, Height: 38); HitTestVisible: false; Style: (TextColor: #ecf8f0, FontSize: 13, HorizontalAlignment: Start, VerticalAlignment: Center); } }
+                Button #RowBtn4 { Anchor: (Width: 260, Height: 38, Top: 0, Left: 276); Padding: (Full: 4); Style: $T.@RowBtnStyle; ItemIcon #RowIcon4 { Anchor: (Width: 30, Height: 30, Left: 6, Top: 4); HitTestVisible: false; } Label { Text: "Reihe 5"; Anchor: (Left: 44, Top: 0, Right: 8, Height: 38); HitTestVisible: false; Style: (TextColor: #ecf8f0, FontSize: 13, HorizontalAlignment: Start, VerticalAlignment: Center); } }
+                Button #RowBtn5 { Anchor: (Width: 260, Height: 38, Top: 42, Left: 276); Padding: (Full: 4); Style: $T.@RowBtnStyle; ItemIcon #RowIcon5 { Anchor: (Width: 30, Height: 30, Left: 6, Top: 4); HitTestVisible: false; } Label { Text: "Reihe 6"; Anchor: (Left: 44, Top: 0, Right: 8, Height: 38); HitTestVisible: false; Style: (TextColor: #ecf8f0, FontSize: 13, HorizontalAlignment: Start, VerticalAlignment: Center); } }
+                Button #RowBtn6 { Anchor: (Width: 260, Height: 38, Top: 84, Left: 276); Padding: (Full: 4); Style: $T.@RowBtnStyle; ItemIcon #RowIcon6 { Anchor: (Width: 30, Height: 30, Left: 6, Top: 4); HitTestVisible: false; } Label { Text: "Reihe 7"; Anchor: (Left: 44, Top: 0, Right: 8, Height: 38); HitTestVisible: false; Style: (TextColor: #ecf8f0, FontSize: 13, HorizontalAlignment: Start, VerticalAlignment: Center); } }
+                Button #RowBtn7 { Anchor: (Width: 260, Height: 38, Top: 126, Left: 276); Padding: (Full: 4); Visible: false; Style: $T.@RowBtnStyle; ItemIcon #RowIcon7 { Anchor: (Width: 30, Height: 30, Left: 6, Top: 4); HitTestVisible: false; } Label { Text: "Reihe 8"; Anchor: (Left: 44, Top: 0, Right: 8, Height: 38); HitTestVisible: false; Style: (TextColor: #ecf8f0, FontSize: 13, HorizontalAlignment: Start, VerticalAlignment: Center); } }
+              }
+            }
+          }
+          Group #FilterGrid {
+            Anchor: (Top: 152, Left: 0, Right: 0, Height: 200);
+            LayoutMode: Center;
+            Group #FilterContainer {
+              Anchor: (Width: 272, Height: 188);
+              Button #FilterBtn0 { Anchor: (Width: 58, Height: 58, Top: 0, Left: 0); Padding: (Full: 3); Style: $T.@SlotStyle; ItemIcon #FilterIcon0 { Anchor: (Full: 0); HitTestVisible: false; } }
+              Button #FilterBtn1 { Anchor: (Width: 58, Height: 58, Top: 0, Left: 66); Padding: (Full: 3); Style: $T.@SlotStyle; ItemIcon #FilterIcon1 { Anchor: (Full: 0); HitTestVisible: false; } }
+              Button #FilterBtn2 { Anchor: (Width: 58, Height: 58, Top: 0, Left: 132); Padding: (Full: 3); Style: $T.@SlotStyle; ItemIcon #FilterIcon2 { Anchor: (Full: 0); HitTestVisible: false; } }
+              Button #FilterBtn3 { Anchor: (Width: 58, Height: 58, Top: 0, Left: 198); Padding: (Full: 3); Style: $T.@SlotStyle; ItemIcon #FilterIcon3 { Anchor: (Full: 0); HitTestVisible: false; } }
+              Button #FilterBtn4 { Anchor: (Width: 58, Height: 58, Top: 66, Left: 0); Padding: (Full: 3); Style: $T.@SlotStyle; ItemIcon #FilterIcon4 { Anchor: (Full: 0); HitTestVisible: false; } }
+              Button #FilterBtn5 { Anchor: (Width: 58, Height: 58, Top: 66, Left: 66); Padding: (Full: 3); Style: $T.@SlotStyle; ItemIcon #FilterIcon5 { Anchor: (Full: 0); HitTestVisible: false; } }
+              Button #FilterBtn6 { Anchor: (Width: 58, Height: 58, Top: 66, Left: 132); Padding: (Full: 3); Style: $T.@SlotStyle; ItemIcon #FilterIcon6 { Anchor: (Full: 0); HitTestVisible: false; } }
+              Button #FilterBtn7 { Anchor: (Width: 58, Height: 58, Top: 66, Left: 198); Padding: (Full: 3); Style: $T.@SlotStyle; ItemIcon #FilterIcon7 { Anchor: (Full: 0); HitTestVisible: false; } }
+              Button #FilterBtn8 { Anchor: (Width: 58, Height: 58, Top: 132, Left: 0); Padding: (Full: 3); Style: $T.@SlotStyle; ItemIcon #FilterIcon8 { Anchor: (Full: 0); HitTestVisible: false; } }
+              Button #FilterBtn9 { Anchor: (Width: 58, Height: 58, Top: 132, Left: 66); Padding: (Full: 3); Style: $T.@SlotStyle; ItemIcon #FilterIcon9 { Anchor: (Full: 0); HitTestVisible: false; } }
+              Button #FilterBtn10 { Anchor: (Width: 58, Height: 58, Top: 132, Left: 132); Padding: (Full: 3); Style: $T.@SlotStyle; ItemIcon #FilterIcon10 { Anchor: (Full: 0); HitTestVisible: false; } }
+              Button #FilterBtn11 { Anchor: (Width: 58, Height: 58, Top: 132, Left: 198); Padding: (Full: 3); Style: $T.@SlotStyle; ItemIcon #FilterIcon11 { Anchor: (Full: 0); HitTestVisible: false; } }
+            }
+          }
+          Group #PageControls {
+            Anchor: (Bottom: 4, Height: 36, Left: 0, Right: 0);
+            LayoutMode: Center;
+            Group {
+              Anchor: (Width: 216, Height: 36);
+              Button #PrevPage {
+                Anchor: (Width: 40, Height: 32, Top: 2, Left: 0);
+                Style: $T.@SmallBtnStyle;
+                Label { Text: "<"; Anchor: (Full: 0); HitTestVisible: false; Style: (FontSize: 16, TextColor: #ecf8f0, HorizontalAlignment: Center, VerticalAlignment: Center); }
+              }
+              Label #PageLabel {
+                Text: "Seite 1/1";
+                Anchor: (Width: 100, Height: 32, Top: 2, Left: 48);
+                Style: (FontSize: 13, TextColor: #c8e0d4, HorizontalAlignment: Center, VerticalAlignment: Center);
+              }
+              Button #NextPage {
+                Anchor: (Width: 40, Height: 32, Top: 2, Left: 176);
+                Style: $T.@SmallBtnStyle;
+                Label { Text: ">"; Anchor: (Full: 0); HitTestVisible: false; Style: (FontSize: 16, TextColor: #ecf8f0, HorizontalAlignment: Center, VerticalAlignment: Center); }
+              }
+            }
+          }
+        }
+
+        Group #HelpView {
+          Anchor: (Top: 64, Bottom: 48, Left: 226, Right: 8);
+          Visible: false;
+          Background: (TexturePath: "Textures/AthenaSorter/RoundedPanel.png", Border: 24);
+          Padding: (Full: 20);
+          Label #HelpTitle {
+            Text: "Anleitung";
+            Anchor: (Top: 8, Left: 0, Right: 0, Height: 28);
+            Style: (FontSize: 16, TextColor: #d4a345, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, LetterSpacing: 1);
+          }
+          Label #HelpLine1 { Text: "Ducken + Rechtsklick auf Kiste"; Anchor: (Top: 48, Left: 0, Right: 0, Height: 24); Style: $T.@BodyStyle; }
+          Label #HelpLine2 { Text: "Eingangskiste: Items reinlegen"; Anchor: (Top: 76, Left: 0, Right: 0, Height: 24); Style: $T.@BodyStyle; }
+          Label #HelpLine3 { Text: "Speicherkiste: Item in Hand + Slot/Reihe"; Anchor: (Top: 102, Left: 0, Right: 0, Height: 24); Style: $T.@BodyStyle; }
+          Label #HelpLine4 { Text: "Menü: /athenasorter oder /lager"; Anchor: (Top: 128, Left: 0, Right: 0, Height: 24); Style: $T.@BodyStyle; }
+          Label #HelpLine5 { Text: "Reihen-Modus: jedes Item in seine Kistenreihe"; Anchor: (Top: 154, Left: 0, Right: 0, Height: 24); Style: $T.@BodyStyle; }
+          Label #HelpLine6 { Text: "Items sortieren sich automatisch"; Anchor: (Top: 188, Left: 0, Right: 0, Height: 24); Style: $T.@HintStyle; }
+        }
+
+        Group #StatusView {
+          Anchor: (Top: 64, Bottom: 48, Left: 226, Right: 8);
+          Visible: false;
+          Background: (TexturePath: "Textures/AthenaSorter/RoundedPanel.png", Border: 24);
+          Padding: (Full: 20);
+          Label #StatusWorld { Text: "Welt: —"; Anchor: (Top: 8, Left: 0, Right: 0, Height: 24); Style: (FontSize: 15, TextColor: #8ee4b8, RenderBold: true, HorizontalAlignment: Center); }
+          Label #StatusInput { Text: "Eingangskiste: —"; Anchor: (Top: 40, Left: 0, Right: 0, Height: 22); Style: $T.@BodyStyle; }
+          Label #StatusStorage { Text: "Speicherkisten: —"; Anchor: (Top: 66, Left: 0, Right: 0, Height: 22); Style: $T.@BodyStyle; }
+          Label #StatusIndexed { Text: "Indexierte Kisten: —"; Anchor: (Top: 92, Left: 0, Right: 0, Height: 22); Style: $T.@BodyStyle; }
+          Label #StatusRadius { Text: "Suchradius: —"; Anchor: (Top: 118, Left: 0, Right: 0, Height: 22); Style: $T.@BodyStyle; }
+          Label #StatusInterval { Text: "Intervall: —"; Anchor: (Top: 144, Left: 0, Right: 0, Height: 22); Style: $T.@BodyStyle; }
+          Group #RefreshStatusRow {
+            Anchor: (Top: 188, Height: 40, Left: 0, Right: 0);
+            LayoutMode: Center;
+            Button #RefreshStatusBtn {
+              Anchor: (Width: 200, Height: 40);
+              Style: $T.@PrimaryStyle;
+              Label { Text: "Status aktualisieren"; Anchor: (Full: 0); HitTestVisible: false; Style: (TextColor: #ffffff, FontSize: 13, HorizontalAlignment: Center, VerticalAlignment: Center); }
+            }
+          }
+          Group #ClearInputRow {
+            Anchor: (Top: 260, Height: 40, Left: 0, Right: 0);
+            LayoutMode: Center;
+            Button #ClearInputBtn {
+              Anchor: (Width: 220, Height: 40);
+              Style: $T.@DangerStyle;
+              Label { Text: "Eingangskiste entfernen"; Anchor: (Full: 0); HitTestVisible: false; Style: (TextColor: #ffcccc, FontSize: 13, HorizontalAlignment: Center, VerticalAlignment: Center); }
+            }
+          }
+        }
+
+        Group #ScanView {
+          Anchor: (Top: 64, Bottom: 48, Left: 226, Right: 8);
+          Visible: false;
+          Background: (TexturePath: "Textures/AthenaSorter/RoundedPanel.png", Border: 24);
+          Padding: (Full: 20);
+          Label #ScanHint {
+            Text: "Scannt nur Kisten auf deinen Plots (SimpleClaims).";
+            Anchor: (Top: 8, Left: 0, Right: 0, Height: 32);
+            Style: $T.@MutedStyle;
+          }
+          Label #ScanRadiusLabel {
+            Text: "Scan-Radius: 24 Blöcke";
+            Anchor: (Top: 52, Left: 0, Right: 0, Height: 26);
+            Style: (FontSize: 16, TextColor: #ecf8f0, HorizontalAlignment: Center);
+          }
+          Group #ScanRadiusControls {
+            Anchor: (Top: 84, Height: 40, Left: 0, Right: 0);
+            LayoutMode: Center;
+            Group {
+              Anchor: (Width: 104, Height: 40);
+              Button #ScanRadiusDec {
+                Anchor: (Width: 44, Height: 36, Top: 2, Left: 0);
+                Style: $T.@SmallBtnStyle;
+                Label { Text: "-"; Anchor: (Full: 0); HitTestVisible: false; Style: (FontSize: 18, TextColor: #ecf8f0, HorizontalAlignment: Center, VerticalAlignment: Center); }
+              }
+              Button #ScanRadiusInc {
+                Anchor: (Width: 44, Height: 36, Top: 2, Left: 60);
+                Style: $T.@SmallBtnStyle;
+                Label { Text: "+"; Anchor: (Full: 0); HitTestVisible: false; Style: (FontSize: 18, TextColor: #ecf8f0, HorizontalAlignment: Center, VerticalAlignment: Center); }
+              }
+            }
+          }
+          Group #RunScanRow {
+            Anchor: (Top: 132, Height: 44, Left: 0, Right: 0);
+            LayoutMode: Center;
+            Button #RunScanBtn {
+              Anchor: (Width: 240, Height: 44);
+              Style: $T.@SuccessStyle;
+              Label { Text: "Kisten jetzt scannen"; Anchor: (Full: 0); HitTestVisible: false; Style: (TextColor: #ffffff, FontSize: 14, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center); }
+            }
+          }
+          Label #ScanResult {
+            Text: "";
+            Anchor: (Top: 196, Left: 16, Right: 16, Height: 64);
+            Style: $T.@HintStyle;
+          }
+        }
+
+        Group #SettingsView {
+          Anchor: (Top: 64, Bottom: 48, Left: 226, Right: 8);
+          Visible: false;
+          Background: (TexturePath: "Textures/AthenaSorter/RoundedPanel.png", Border: 24);
+          Padding: (Full: 20);
+          Label #SettingsHint {
+            Text: "Globale Sortier-Einstellungen";
+            Anchor: (Top: 8, Left: 0, Right: 0, Height: 28);
+            Style: (FontSize: 16, TextColor: #d4a345, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, LetterSpacing: 1);
+          }
+          Label #SortRadiusLabel {
+            Text: "Sortier-Radius: 32";
+            Anchor: (Top: 48, Left: 0, Right: 0, Height: 24);
+            Style: $T.@BodyStyle;
+          }
+          Group #SortRadiusControls {
+            Anchor: (Top: 80, Height: 40, Left: 0, Right: 0);
+            LayoutMode: Center;
+            Group {
+              Anchor: (Width: 104, Height: 40);
+              Button #SortRadiusDec {
+                Anchor: (Width: 44, Height: 36, Top: 2, Left: 0);
+                Style: $T.@SmallBtnStyle;
+                Label { Text: "-"; Anchor: (Full: 0); HitTestVisible: false; Style: (FontSize: 18, TextColor: #ecf8f0, HorizontalAlignment: Center, VerticalAlignment: Center); }
+              }
+              Button #SortRadiusInc {
+                Anchor: (Width: 44, Height: 36, Top: 2, Left: 60);
+                Style: $T.@SmallBtnStyle;
+                Label { Text: "+"; Anchor: (Full: 0); HitTestVisible: false; Style: (FontSize: 18, TextColor: #ecf8f0, HorizontalAlignment: Center, VerticalAlignment: Center); }
+              }
+            }
+          }
+          Label #SortIntervalLabel {
+            Text: "Sortier-Intervall: 1.0s";
+            Anchor: (Top: 124, Left: 0, Right: 0, Height: 24);
+            Style: $T.@BodyStyle;
+          }
+          Group #SortIntervalControls {
+            Anchor: (Top: 152, Height: 40, Left: 0, Right: 0);
+            LayoutMode: Center;
+            Group {
+              Anchor: (Width: 104, Height: 40);
+              Button #SortIntervalDec {
+                Anchor: (Width: 44, Height: 36, Top: 2, Left: 0);
+                Style: $T.@SmallBtnStyle;
+                Label { Text: "-"; Anchor: (Full: 0); HitTestVisible: false; Style: (FontSize: 18, TextColor: #ecf8f0, HorizontalAlignment: Center, VerticalAlignment: Center); }
+              }
+              Button #SortIntervalInc {
+                Anchor: (Width: 44, Height: 36, Top: 2, Left: 60);
+                Style: $T.@SmallBtnStyle;
+                Label { Text: "+"; Anchor: (Full: 0); HitTestVisible: false; Style: (FontSize: 18, TextColor: #ecf8f0, HorizontalAlignment: Center, VerticalAlignment: Center); }
+              }
+            }
+          }
+          Label #SettingsNote {
+            Text: "Kisten einrichten: Ducken + Rechtsklick auf Kiste";
+            Anchor: (Top: 208, Left: 0, Right: 0, Height: 32);
+            Style: $T.@MutedStyle;
+          }
+        }
+
+        Label #FeedbackLabel {
+          Text: "";
+          Anchor: (Bottom: 28, Left: 226, Right: 8, Height: 20);
+          Style: (FontSize: 12, TextColor: #d4a345, HorizontalAlignment: Center);
+        }
+
+        Group #Footer {
+          Anchor: (Bottom: 8, Left: 226, Right: 8, Height: 42);
+          LayoutMode: Center;
+          Button #ClearFiltersBtn {
+            Anchor: (Width: 160, Height: 40, Top: 2);
+            Style: $T.@WarnStyle;
+            Label { Text: "Filter leeren"; Anchor: (Full: 0); HitTestVisible: false; Style: (TextColor: #fff0b8, FontSize: 13, HorizontalAlignment: Center, VerticalAlignment: Center); }
+          }
+        }
+      }
+    }
+  }
+}

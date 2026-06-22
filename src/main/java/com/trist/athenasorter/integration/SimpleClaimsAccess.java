@@ -9,8 +9,8 @@ import java.util.UUID;
 import java.util.function.Predicate;
 
 /**
- * Optional SimpleClaims hook — only indexes containers the player could open.
- * Uses reflection so AthenaSorter still loads when SimpleClaims is not installed.
+ * SimpleClaims integration (Citybuild plots = claimed chunks). Blocks scanning and using
+ * containers on foreign plots — same rules as opening a chest with right-click.
  */
 public final class SimpleClaimsAccess {
     private static final String CLAIM_MANAGER_CLASS = "com.buuz135.simpleclaims.claim.ClaimManager";
@@ -58,8 +58,19 @@ public final class SimpleClaimsAccess {
 
     public static boolean canUseContainer(
             PlayerRef playerRef, World world, BlockType blockType, int x, int y, int z) {
-        if (!AVAILABLE || playerRef == null || world == null) {
+        if (playerRef == null) {
+            return false;
+        }
+        return canUseContainer(playerRef.getUuid(), world, blockType, x, y, z);
+    }
+
+    public static boolean canUseContainer(
+            UUID playerUuid, World world, BlockType blockType, int x, int y, int z) {
+        if (!AVAILABLE) {
             return true;
+        }
+        if (playerUuid == null || world == null) {
+            return false;
         }
         try {
             String blockId =
@@ -90,13 +101,7 @@ public final class SimpleClaimsAccess {
 
             Object allowed =
                     isAllowedToInteract.invoke(
-                            claimManager,
-                            playerRef.getUuid(),
-                            world.getName(),
-                            x,
-                            z,
-                            predicate,
-                            permission);
+                            claimManager, playerUuid, world.getName(), x, z, predicate, permission);
             return allowed instanceof Boolean && (Boolean) allowed;
         } catch (ReflectiveOperationException ignored) {
             return false;

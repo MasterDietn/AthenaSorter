@@ -14,8 +14,9 @@ import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
+import com.trist.athenasorter.integration.SimpleClaimsAccess;
 import com.trist.athenasorter.manager.StorageManager;
-import com.trist.athenasorter.ui.ChestConfigPage;
+import com.trist.athenasorter.ui.UiOpener;
 import com.trist.athenasorter.util.ContainerBlockUtil;
 import org.joml.Vector3i;
 
@@ -64,28 +65,45 @@ public class ChestInteractSystem extends EntityEventSystem<EntityStore, Pre> {
             return;
         }
 
-        String worldName = "default";
         World world = player.getWorld();
-        if (world != null) {
-            worldName = world.getName();
+        final String worldName = world != null ? world.getName() : "default";
+        PlayerRef playerRef = store.getComponent(entityRef, PlayerRef.getComponentType());
+        if (playerRef == null) {
+            return;
         }
+        if (world != null
+                && !SimpleClaimsAccess.canUseContainer(
+                        playerRef, world, blockType, target.x, target.y, target.z)) {
+            return;
+        }
+
         manager.getContainerRegistry().addContainer(worldName, target.x, target.y, target.z);
 
-        PlayerRef playerRef = store.getComponent(entityRef, PlayerRef.getComponentType());
         ItemStack held = event.getContext().getHeldItem();
         String heldItemId = held != null && !held.isEmpty() ? held.getItemId() : null;
 
-        player.getPageManager()
-                .openCustomPage(
-                        entityRef,
-                        store,
-                        new ChestConfigPage(
-                                playerRef,
-                                blockType.getId(),
-                                manager,
-                                target,
-                                worldName,
-                                heldItemId));
         event.setCancelled(true);
+        if (world != null) {
+            world.execute(() ->
+                    UiOpener.openChestConfig(
+                            entityRef,
+                            store,
+                            playerRef,
+                            blockType.getId(),
+                            manager,
+                            target,
+                            worldName,
+                            heldItemId));
+        } else {
+            UiOpener.openChestConfig(
+                    entityRef,
+                    store,
+                    playerRef,
+                    blockType.getId(),
+                    manager,
+                    target,
+                    worldName,
+                    heldItemId);
+        }
     }
 }

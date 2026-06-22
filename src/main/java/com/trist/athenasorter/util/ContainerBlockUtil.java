@@ -36,6 +36,13 @@ public final class ContainerBlockUtil {
         return blockType != null && isContainerBlockId(blockType.getId());
     }
 
+    public static long distanceSquared(int x1, int y1, int z1, int x2, int y2, int z2) {
+        long dx = x1 - x2;
+        long dy = y1 - y2;
+        long dz = z1 - z2;
+        return dx * dx + dy * dy + dz * dz;
+    }
+
     private static boolean isAirOrEmptyId(String id) {
         return id.equals("air")
                 || id.equals("empty")
